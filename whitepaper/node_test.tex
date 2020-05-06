@@ -1,0 +1,17 @@
+% paper.tex
+\documentclass{article}
+\usepackage{tikzit}
+\input{nodes.tikzstyles}
+
+\begin{document}
+
+A tikz picture as an equation:
+\begin{equation}
+  \tikzfig{network_figure}
+\end{equation}
+
+\newpage
+A centered tikz picture:
+\ctikzfig{network_figure}
+
+\end{document}

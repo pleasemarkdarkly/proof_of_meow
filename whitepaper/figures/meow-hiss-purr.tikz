@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (6) at (0, -1.5) {Purr};
+		\node [style=none] (14) at (0, 3.25) {Hiss};
+		\node [style=none] (15) at (0, 5) {Meow};
+		\node [style=none] (16) at (0, 2) {Meow};
+		\node [style=none] (17) at (0, 0.5) {Meow};
+		\node [style=grey dot] (19) at (3.25, 1.5) {};
+		\node [style=grey dot] (20) at (3.25, 3.75) {};
+		\node [style=grey dot] (22) at (-3.25, 4.5) {};
+		\node [style=black dot] (23) at (-3.25, 1.5) {};
+		\node [style=grey dot] (25) at (3.25, -1) {};
+		\node [style=black dot] (26) at (-3.25, -1) {};
+		\node [style=grey dot] (27) at (-3.25, 0) {};
+		\node [style=black dot] (28) at (3.25, 4.5) {};
+		\node [style=black dot] (29) at (-3.25, 3.75) {};
+		\node [style=black dot] (30) at (3.25, 0) {};
+		\node [style=grey dot] (31) at (-3.25, -3.5) {};
+		\node [style=grey dot] (32) at (3.25, -4.75) {};
+		\node [style=grey dot] (33) at (-3.25, -6) {};
+		\node [style=black dot] (34) at (3.25, -3.5) {};
+		\node [style=none] (35) at (0, -3) {Meow};
+		\node [style=black dot] (36) at (-3.25, -4.75) {};
+		\node [style=none] (37) at (0, -4.25) {Hiss};
+		\node [style=black dot] (38) at (3.25, -6) {};
+		\node [style=none] (39) at (0, -5.5) {Purr};
+		\node [style=black dot] (40) at (3.25, -7) {};
+		\node [style=grey dot] (41) at (-3.25, -7) {};
+		\node [style=none] (42) at (0, -6.5) {Purr};
+		\node [style=green dot] (43) at (-3.25, -1) {};
+		\node [style=red dot] (44) at (-3.25, 3.75) {};
+		\node [style=red dot] (45) at (3.25, -4.75) {};
+		\node [style=green dot] (46) at (-3.25, -7) {};
+		\node [style=none] (47) at (-5, 5.25) {};
+		\node [style=none] (48) at (-5, -8) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=right arrow] (34) to (31);
+		\draw [style=right arrow] (22) to (28);
+		\draw [style=right arrow] (20) to (29);
+		\draw [style=right arrow] (19) to (23);
+		\draw [style=right arrow] (27) to (30);
+		\draw [style=right arrow] (25) to (26);
+		\draw [style=right arrow] (36) to (32);
+		\draw [style=right arrow] (33) to (38);
+		\draw [style=right arrow] (40) to (41);
+		\draw [style=right arrow] (47.center) to (48.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
