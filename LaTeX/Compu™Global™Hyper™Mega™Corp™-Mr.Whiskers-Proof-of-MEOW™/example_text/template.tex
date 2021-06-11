@@ -1,0 +1,164 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,graphicx}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9in}
+\begin{document}
+
+%%%%
+%%%% You can either make a titlepage, like this:
+%%%%
+%\begin{titlepage}
+%\begin{center}
+%{\Huge The Traveling Salesman Problem}\\[.5cm]
+%{\Large S. Bose and A. Einstein}\\[.5cm]
+%{\it Department of Mathematical Physics,\\ 
+%National University of Ireland, Maynooth, Ireland}\\[2cm]
+%\end{center}
+%\begin{abstract}
+%
+%Here we write out the abstract for the project. 
+% 
+%\end{abstract}
+%
+%\end{titlepage}
+
+%%%%
+%%%% or you can use \maketitle, like this:
+%%%%
+\title{ Travelling Salesman}
+\author { S. Bose and A. Einstein}
+%\address{Department of Mathematical Physics, National University of
+%  Ireland Maynooth, Maynooth, Co Kildare, Ireland}
+%%%% (annoyingly, there is no \address command in the standard
+%%%% article class!)
+\date{\today}
+\maketitle
+
+\begin{abstract}
+
+Here we write out the abstract for the project. 
+ 
+\end{abstract}
+%\maketitle                 
+%%%
+%%%Introduction
+%%%
+\section{Introduction}
+
+Here you can pop in sections which are numbered. You can also make
+text in {\em italics}, and in {\bf bold face}. There are two main
+types of text environments:
+\begin{enumerate}
+\item ordinary text and
+\item math text.
+\end{enumerate}
+In
+ordinary text one can have a bulleted list by starting an itemize
+environment, or a numbered list by starting an enumerate environment
+\begin{itemize}
+\item This is bullet item 1
+\item This is bullet item 2
+\end{itemize}
+For the math text, there are two types, inline math which is done like
+$\psi=\sqrt{\alpha+\beta}$, and standalone equations which are done
+like
+\begin{equation}
+\psi=\sqrt{\alpha+\beta}
+\end{equation}
+There are lots of special math symbols. I have copied a small chart
+which summarises the various math symbols. Another handy equation
+environment is the align environment. This is useful if you
+have a number of equations that you want to write down beneath each
+other:
+\begin{align}
+\psi_1&=e^{-x^2/2}\\
+\psi_2&=e^{-x^2/4}
+\end{align}
+here the ampersands make sure the equal signs in the equations all
+line up vertically.
+
+One can also have unnumbered sections:
+\section*{Unnumbered Section}
+
+and also have numbered and unnumbered subsections
+\subsection{A little subsection}
+
+All standalone equations are automatically numbered. You can introduce
+a name for any standalone using the label command:
+\begin{equation}
+\psi_{i,j}^{n+1}=\frac{1}{4}\left( \psi_{i+1,j}+\psi_{i-1,j}+\psi_{i,j-1}+\psi_{i,j+1}\right)\;\;,
+\label{jacobi}
+\end{equation}
+%
+This equation is now labelled by the symbol {\bf jacobi} and one can
+refer to the automatically generated equation number for this equation
+by (\ref{jacobi}). If you stick in equations before the jacobi
+equation, the equation numbers will alter but the symbol
+\eqref{jacobi} will always point to the jacobi equation. One can also
+introduce citation references. Again these are given internal symbols
+which, when you latex the document, are substitutted for numbers. For
+instance, to reference work \cite{Einstein}, we will have in the
+bibliography at the end of this document a bibliography item which
+will be denoted by the symbol Einstein. When you are finished and
+latex the document, \LaTeX will work out the appropriate number to
+insert into the in-text citation eg. \cite{Einstein} or \cite{Bose}.
+
+\section{Figures and tables}
+\label{figsandtabs}
+
+Figures and tables are {\em floating bodies}, which means that \LaTeX
+will put them where there is room for them, rather than exactly where
+you put them in the text.
+
+\subsection{Figures}
+\label{figs}
+
+To insert pictures you must produce encapsulated postscript files of
+the relevant matlab figure. Lets say we have in our directory a saved
+figure called wavefunction.eps. Then the following pice of \LaTeX will
+insert the figure into our document:
+
+\begin{figure}[htp]
+\begin{center}
+\includegraphics[width=8cm]{wavefunction.eps}
+\end{center}
+\caption{This is the caption for the figure}
+\label{fig1}
+\end{figure}
+
+You also notice that we have labelled the figure so that we can refer
+to it in the text as Figure \ref{fig1}.  The {\tt [htp]} inside the
+square brackets tells \LaTeX to try to put the figure here[h] if
+possible, or at the top[t] of the page, or otherwise on a separate
+page[p]. 
+
+\subsection{Tables}
+\label{tabs}
+
+You can insert tables in a similar way to how figures were inserted in
+section \ref{figs}:
+
+\begin{table}[hbt]
+\begin{center}
+\begin{tabular}{|c|llc|}
+No of towns & $l_{\min}$ & attempts & time\\ \hline
+20 & 3.8752 & 10 & 20min \\
+50 & 9.3821 & 40 & 3hrs \\
+100 & 24.623 & 100 & 9d \\
+200 & 67.342 & 500 & 7yr
+\end{tabular}
+\end{center}
+\caption{Results for the travelling salesman with a random
+  configuration of towns. $l_{\min}$ is the shortest
+roundtrip found in the given number of attempts.}
+\label{tab:results}
+\end{table}
+
+\begin{thebibliography}{99}
+\bibitem{Bose} S. Bose, Phys. Rev. A {\bf 91}, p. 1121 (1928).
+\bibitem{Einstein} A. Einstein, Phys. Rev. {\bf 1}, p. 1 (1928).
+\end{thebibliography}
+
+
+\end{document}
