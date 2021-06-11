@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{tikz}
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\newlength{\imagewidth}
+\newlength{\imagescale}
+
+\begin{document}
+\begin{center}
+    \begin{tikzpicture}
+    	\tikzstyle{place}=[circle, draw=black, minimum size = 10mm]
+    	
+    	% Transaction Nodes x^256
+    	\foreach \x in {1,...,10}
+    		\draw node at (\x*1.10, 0) [place] (first_\x) {$x_\x$};
+    	\foreach \x in {1,...,3}
+    	    \fill (12.70 -\x*0.3, 0) circle (2pt);
+    	\draw node at (13.15, 0) [place] (first_11) {$x_16$};
+    	
+    	% Verification Nodes y^n
+    	\foreach \x in {1,...,10}
+    		\draw node at (\x*1.10, -5) [place] (second_\x) {$y_\x$};
+    	\foreach \x in {1,...,3}
+    	    \fill (12.70 -\x*0.3, -5) circle (2pt);
+    	\draw node at (13.15, -5) [place] (second_11) {$y_16$};
+    	
+        \foreach \i in {1,...,11}
+            \foreach \j in {1,...,11}
+                \draw [->] (first_\i) to (second_\j);
+    		
+    	%dApp Servers
+        \foreach \x in {1,...,10}
+    		\draw node at (\x*1.10, -10) [place] (third_\x) {$z_\x$};
+    	\foreach \x in {1,...,3}
+    	    \fill (12.70 -\x*0.3, -10) circle (2pt);
+    	\draw node at (13.15, -10) [place] (third_11) {$z_n$};
+    	
+    	\foreach \x in {1,...,11}
+    	    \draw [-->] (third_\x) to (second_\x);
+    	
+    	%dApps Clients
+        \foreach \x in {1,...,10}
+    		\draw node at (\x*1.10, -13.5) [place] (fourth_\x) {$u_\x$};
+    	\foreach \x in {1,...,3}
+    	    \fill (12.70 -\x*0.3, -13.5) circle (2pt);
+    	\draw node at (13.15, -13.5) [place] (fourth_11) {$u_n$};
+    	
+    	\foreach \i in {1,...,11}
+            \foreach \j in {1,...,11}
+                \draw [->] (third_\i) to (fourth_\j);
+    
+    \end{tikzpicture}
+    
+    \caption{Illustration of a \numi{} node network. Transaction Super Nodes $x^{16} * x^{16}}$, $y^{n}$ Verification Nodes may subscribe to any Super Node. Any dApp Server subscribes to Super Node $z^{n}$ and dApp $u^{n}$ to one Super Node.}
+    \label{fig:network_node_structure}
+\end{center}
+\end{document}

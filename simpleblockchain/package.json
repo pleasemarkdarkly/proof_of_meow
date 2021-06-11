@@ -1,0 +1,31 @@
+{
+  "name": "proof-of-meow",
+  "version": "1.0.0",
+  "description": "The little blockchain that could.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mark Phillips, Mr. Whiskers' Intern",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pleasemarkdarkly/proof_of_meow.git"
+  },
+  "keywords": [
+    "javascript",
+    "blockchain",
+    "proof",
+    "of",
+    "work",
+    "angular"
+  ],
+  "bugs": {
+    "url": "https://github.com/pleasemarkdarkly/proof_of_meow/issues"
+  },
+  "homepage": "https://www.compuglobalhypermega.corp",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "performance": "^1.1.1"
+  }
+}

@@ -1,0 +1,428 @@
+\documentclass[9pt,oneside]{amsart}
+
+% -------------------------------------------------------------------------------
+% Packages
+% -------------------------------------------------------------------------------
+
+\usepackage[a4paper,width=170mm,top=18mm,bottom=22mm,includeheadfoot]{geometry}
+\usepackage[us,12hr]{datetime} % `us' makes \today behave as usual in TeX/LaTeX
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{multicol,caption}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{caption}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{mathtools}
+\usepackage{romannum}
+\usepackage{afterpage}
+\usepackage{multido}
+\usepackage{color}
+\usepackage{background}
+\usepackage{witharrows}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{tikzit}
+\input{nodes.tikzstyles}
+
+\newcolumntype{C}[1]{>{}m{#1}}
+\renewcommand\tabularxcolumn[1]{C{#1}}
+
+% -------------------------------------------------------------------------------
+% Paper Style
+% -------------------------------------------------------------------------------
+
+\unitlength=1mm
+\definecolor{lightyellow}{rgb}{1,0.99,0.95}
+\usetikzlibrary{decorations.markings,calc}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+% \pagecolor{orange}
+
+\backgroundsetup{
+ scale=1, angle=0, position={current page.center}, contents={%
+ \begin{tikzpicture}[remember picture,overlay]
+  \node[opacity=0.2,inner sep=0pt] at (current page.center)
+   {\includegraphics[width=\paperwidth,height=\paperheight]{mrwhiskers_bg}};
+ \end{tikzpicture}%
+ }%
+}%
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% -------------------------------------------------------------------------------
+% Custom commands
+% -------------------------------------------------------------------------------
+ 
+\newcommand{\hcancel}[1]{%
+  \tikz[baseline=(tocancel.base)]{
+    \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+ %   \draw[black] (tocancel.south west) -- (tocancel.north east);
+   }%
+ }%
+
+\newcommand{\inputTikZ}[2]{%  
+     \scalebox{#1}{\input{#2}}  
+}
+
+\newcommand*\eg{e.g.\@\xspace}
+\newcommand*\Eg{e.g.\@\xspace}
+\newcommand*\ie{i.e.\@\xspace}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand*\compu{COMPU\textsuperscript{\texttrademark}GLOBAL\textsuperscript{\texttrademark}HYPER\textsuperscript{\texttrademark}MEGA\textsuperscript{\texttrademark}CORP\textsuperscript{\texttrademark}}
+\newcommand*\proofmeow{PROOF OF MEOW\textsuperscript{\textregistered}}
+\newcommand*\lipsumeow{Meow, meow, meow, meow, meow, meow, meow, meow.  Meow, meow, meow. Meow, meow, meow, meow, meow, meow, meow, meow. Meow, meow, meow, meow, meow, meow, meow, meow. }
+\newcommand*\lipsumeowpurr{Purr. meow, puuuuurrrr, mrrowwwwrrrrrr, meow, meow, meow. Meow, meow, meow, meow, meow, meow, meow, meow. Meow, meow, meow, meow, meow, meow, meow, meow. Meow, meow, meow, meow, meow, meow, meow, meow. Mrow, mrrr, prrr, mrrrrrrrrwwwwrrrrrr. Meow, meow, meow, meow, meow, meow, meow, meow.}
+\newcommand*\lipsumhiss{Meow, hiiiiiiiiissssssssssss, meeeeeeeewwwwwr, mrrrroworroror, meow.}
+
+\newcommand*\datetimenow{\THEYEAR\THEMONTH\THEDAY\currenttime}
+
+% -------------------------------------------------------------------------------
+% Title/Author
+% -------------------------------------------------------------------------------
+
+\title{\RNum{2020} \compu{} \\ Architecture and Protocol\\ for Proof of Meow\textsuperscript{\textregistered}\\ {\smaller{\textbf{(Draft 1.0.5)}}}}
+\author{Mr. [Redacted] Whiskers}
+
+% -------------------------------------------------------------------------------
+% Preamble Concluded
+% -------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{abstract}
+ A number of consensus protocols have emerged after Satoshi Nakomoto proposed Proof of Work \cite{nakamoto2009bitcoin}. However, Proof of Stake models have emerged as both computationally more efficient with economic incentives to protect against bad actors. We propose \proofmeow{} which is not only computationally efficient but cute too. Below we describe the protocol, demonstrate mathematically its superiority over conventional schemes, and describe the World Domination Meow Token offering under the symbol MEOW.
+\end{abstract}
+
+\maketitle
+
+\setlength{\columnsep}{20pt}
+\begin{multicols}{2}
+
+% -------------------------------------------------------------------------------
+% Keywords/Terminology
+% -------------------------------------------------------------------------------
+
+\section{Kittywords}\label{sec:keywords} {blockchain, cryptocurrency, permission-ed networks, proof of stake, proof of work, high-speed transactions, decentralized application, dApp, smart contract, distributed crypto-exchange service}, know your customer, anti-money laundering, \meow{}
+
+\section{Termeowology}\label{sec:terminology}
+\begin{description}
+    
+    \item[Byzantine Meow-eneral consensus problem] describes a situation in which, in order to avoid catastrophic failure of the system, the system's actors must agree on a concerted strategy, but some of these actors are unreliable.
+    
+    \item[Cryptokitties] Virtual kitties based on the ERC-721 protocol which demonstrated the most important function of Ethereum, and perhaps all peer-to-peer networks, including blockchain ledgers.
+    
+    \item[dApp] Decentralized application, a term coined by Ethereum, is a back-end service application that operates on a peer-to-peer network without a centralized server.
+    
+    \item[Distributed crypto-exchange service] A cryptocurrency exchange service utilizing smart contracts to maximize security and transparency of the exchange operation.
+    
+    \item[Peer-to-peer, p2p] Peer-to-peer computing or networking is a distributed application architecture that partitions tasks or workloads between peers. Peers are equally privileged, equipotent participants in the application. They are said to form a peer-to-peer network of nodes.
+    
+    \item[Smart contract] A smart contract is a computer protocol intended to digitally facilitate, verify, or enforce the negotiation or performance of a contract. Smart contracts allow the performance of credible transactions without third parties. These transactions are trackable and irreversible.
+    
+    \item[Proof of Meow\textsuperscript{\textregistered}] A new consensus mechanism which primarily revolves around being cute.
+\end{description}
+
+\section{Introducing Mr. Whiskers}\label{sec:whiskers}
+\begin{Figure}
+    \medskip
+    \centering
+%    \includegraphics[width=0.80\textwidth]{figures/mrwhiskers.png}
+    \includegraphics[width=0.80\textwidth]{figures/mrwhiskerstokenme.png}
+    \captionof{figure}{"Meow, meow, meow" said Mr. Whiskers being super cute.}
+    \medskip
+\end{Figure} 
+
+% -------------------------------------------------------------------------------
+% Preface
+% -------------------------------------------------------------------------------
+
+\section{Purreface}\label{sec:preface}
+ This is intended to be a technical ``vision'' summary of one possible direction that may be taken in further developing the \meow{} ecosystem with some rationale as to why this direction is awesome. It lays out in virtually no detail except trying to be cute.
+
+ It is not intended to be relied upon for foreword looking statements or any investment decisions. It is not intended to be a specification, formal or otherwise. 
+
+ The appendix contains as many disclosures as we could reasonably finds and collate which were applicable to this paper and our intentions.
+
+% -------------------------------------------------------------------------------
+% Version History
+% -------------------------------------------------------------------------------
+
+\subsection{Version Hisstory}\label{subsec:history}
+
+\begin{itemize}
+ \item 09/28/2019: 1.0.0
+ \item 09/29/2019: 1.0.5-bib
+\end{itemize}
+
+\subsection{Compilation Time}\label{subsec:compilation}
+
+ \textit{{\ddmmyyyydate\today} at \currenttime}
+
+% -------------------------------------------------------------------------------
+% Background
+% -------------------------------------------------------------------------------
+
+\section{Catground}\label{sec:background}
+ \lipsumeow{} 
+ Classically, meow, meow, purr, hiss, meow, meow, merrorrrrow.
+
+\begin{enumerate}
+ \item Meow (m) Meow, meow, meow. (m)
+ \item Hiss (h) Hiss, hiss, meow. (h)
+ \item Purr (p) Purr, hiss, meow. (p)
+\end{enumerate}
+
+\begin{equation}
+\psi_{p,h}^{n+1}=\frac{1}{4}\left( \psi_{p+1,h}+\psi_{p-1,h}+\psi_{p,h-1}+\psi_{p,h+1}\right)\;\;
+\label{subsec:mrwhiskers}
+\end{equation}
+
+\section{Meowrchitecture}\label{sec:architecture}
+ 
+ \lipsumeow{}
+ 
+\begin{enumerate}
+  \item Meow 
+  \item Purr
+  \item Mewwor
+  \item Hiss
+\end{enumerate}
+
+\subsection{Networkitty Topology}\label{subsec:network_topology}
+
+ \lipsumeow{} Proof of Meow.\textsuperscript{\textregistered} Catsensus protocols. Buzzwords. Meow:
+ 
+\begin{itemize}
+ \item \textbf{Meow}  Meow, meeeeooowrr.
+ \item  \textbf{Meow, meow} \lipsumeow{}
+ \item  \textbf{Meow, hiss, meow} \lipsumhiss{}
+ \item  \textbf{Meow, hiss, purr} \lipsumeowpurr{}
+\end{itemize}
+ 
+\subsection{Meow, purr, hiss, meow.}\label{subsec:decentral_security_scalable}
+
+\begin{enumerate}
+   \item Meow, purr, hiss, meow
+       \begin{enumerate}
+          \item Meow, meow
+          \item Meow, purr, meow
+          \item Meow, hiss, meow
+          \item Purr, meow, purr
+          \item Purr, meow, hiss
+          \item Hiss, meow, purr
+          \item Hiss, purr, hiss
+          \item Hiss, hiss, hiss
+       \end{enumerate}  
+   \item Hiss, purr, purr
+       \begin{enumerate}
+          \item Meow, meow, meow (m)
+          \item Purr, purr, meow (p)
+          \item Hiss, hiss, meow (h)
+       \end{enumerate}
+\end{enumerate}
+ 
+Meow, meow, meow. Hiss, hiss, hiss. Purr, purr, meow. \textit{Meow-chain}.  
+
+\begin{Figure}
+    \medskip
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/figure_1_cropped.pdf}
+    \captionof{figure}{Meow, meow, meow communications.}
+    \medskip
+\end{Figure}
+
+Kitty points are:
+
+\begin{itemize}
+    \item \lipsumeowpurr{}
+    \item \lipsumhiss{}
+    \item \lipsumeow{}
+\end{itemize}
+
+Proof-of-Meow\textsuperscript{\textregistered}:
+
+\begin{proof}
+  Let $purr,hiss \in \mathbb{R}$ where $purr=xy$ and $hiss=z(meow)$. So,
+  \begin{DispWithArrows*}
+    4xyzw &= 2\cdot2purr(hiss) \\
+    &\le 2\cdot(purr^2+hiss^2) \Arrow[i]{substituting meow-riables}\\
+    &= 2\cdot((xy)^2+(z(meow))^2)  \\
+    &= 2\cdot(x^2y^2+z^2meow^2) \\ 
+    &= 2x^2y^2+2z^2meow^2 \\
+    &\le ((x^2)^2+(y^2)^2)+((z^2)^C2)+(meow^2)^2) \\
+    &= x^4+y^4+z^4+w^4 \qedhere
+  \end{DispWithArrows*}
+\end{proof}
+
+The advantages of this meowrchitecture are:
+
+\begin{itemize}
+    \item \textbf{Meow, hiss, purr} \lipsumeow{}
+    \item \textbf{Purr, hiss, meow} \lipsumeowpurr{}
+    \item \textbf{Hiss, purr, meow} \lipsumhiss{}
+\end{itemize}
+
+As a result: \\
+
+
+% \centering
+\textit{Problems in Classical Computing are Meow-able} \\
+\begin{tabular}{ |p{2.2cm}|p{3cm}|p{2.2cm}| }
+     \hline
+     \begin{center}\textbf{\textit{Mathematical Notation}}\end{center} & \begin{center}\textbf{\textit{Catplexity\\ Time}}\end{center} & \begin{center}\textbf{\textit{Tracatable/\\Intracatable}}\end{center}\\
+     \hline
+     \textbf{O(k$^{n}$), O(2$^{n}$)} & Exponential & \textbf{Meowable} \\
+     \hline
+     \textbf{O(n!)} & Factorial & \textbf{Meowable} \\
+     \hline
+     \textbf{O(n$^{n}$)} & Super-Exponential & \textbf{Meowable} \\
+     \hline
+\end{tabular}
+
+\subsection{Meow, purr, hiss, meow protocol}\label{subsec:meow}
+
+ \lipsumeow{}
+ \\
+ \lipsumeowpurr{}
+ 
+\textit{Meow, meow, meow and meow communications}.  
+
+% -------------------------------------------------------------------------------
+% Figure PDF
+% -------------------------------------------------------------------------------
+
+\begin{Figure}
+    \medskip
+    \centering
+    \ctikzfig{meow-hiss-purr_2}
+    \captionof{figure}{Meow, meow, meow consensus.}
+    \medskip
+\end{Figure}
+
+Key points are:
+
+\begin{itemize}
+    \item Meow, meow, purr
+    \item Meow, meow, hiss, purr, meow
+    \item Meow, purr, hiss, meow
+\end{itemize}
+
+
+ This Figure shows the relationship meow and purr. 
+
+% -------------------------------------------------------------------------------
+% Figure PDF
+% -------------------------------------------------------------------------------
+
+\begin{Figure}
+    \medskip
+    \centering
+    \ctikzfig{network_figure}
+    \captionof{figure}{Meow, hiss, purr.}
+    \medskip
+\end{Figure}
+
+\subsection{\proofmeow{} Subsection with financials}\label{subsec:financials_3}
+
+% -------------------------------------------------------------------------------
+% Allocation of Tokens
+% -------------------------------------------------------------------------------
+
+\subsubsection{\compu{} Spreadsheet}\label{subsec:spreadsheet}
+
+The \textit{Compu} World Domination Meow Token or \proofmeow{}-coins will issue \textbf{10,000,000,000} meow-coins, with an initial offer price of \textbf{\$0.01} per token.  Out of which:
+\\
+\begin{center} \label{tab:table1}
+\caption{Table Title}
+\begin{tabular}{l|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+    \textbf{Entity} & \textbf{meow-coins} & \textbf{Purpose}\\
+        $ \square $ & $ meow.A $ & $ \bigtriangleup $ \\
+        \hline
+        Mr. Whiskers & 1,000,000,000 & Cuteness \\
+        Compu\footnote{CompuGlobalHyperMegaCorp entity to be formed.} & 1,000,000,000 & Engineers \\
+        Public & 5,000,000,000 & Actual Ongoing Dev\footnote{Depending on what happens with the tokens in the wild.} \\
+        Reserve & 3,000,000,000 & Ecosystem Mgmt \\
+        \bottomrule[1.25pt]
+    \end{tabular}
+\end{center}
+
+\subsection{Smart Catracts} \label{subsec:smart_contracts} 
+ \lipsumeow{}
+
+\subsection{Catovernance of the Network} \label{subsec:governance} 
+ \lipsumeowpurr{}
+
+\subsection{Spray} \label{fees} 
+ \lipsumeow{}
+
+\subsection{Licking oneself} \label{privacy} 
+ \lipsumeow{}
+
+% -------------------------------------------------------------------------------
+% Github Repositories
+% -------------------------------------------------------------------------------
+
+\section{Meowhub Repositories}\label{sec:protocol} \lipsumeow{}
+
+\subsection{Meow-papers and code}\label{subsec:exchange}
+Whitepaper and Smart Catract. \cite{github-compuglobal}
+
+% -------------------------------------------------------------------------------
+% Conclusions
+% -------------------------------------------------------------------------------
+
+\section{Catclusion} \label{ch:conclusion}
+
+    \lipsumeow{}
+
+\subsection{Missing Meowterial and Open Questions}\label{open-questions-and-further-work}
+ 
+ Meow?
+
+\subsection{Acknowledgments}
+
+ Meow-mommy, meow-daddy. Meow. 
+
+% -------------------------------------------------------------------------------
+% References
+% -------------------------------------------------------------------------------
+ 
+\bibliography{references.bib}{}
+% Print all references
+\nocite{*}
+\bibliographystyle{plain}
+
+\end{multicols}
+
+% -------------------------------------------------------------------------------
+% Appendix
+% -------------------------------------------------------------------------------
+
+\appendix
+ \input{apis.tex}
+ \input{components.tex}
+ \input{faq.tex}
+ \input{disclaimers.tex}
+ \input{authors.tex}
+
+\end{document}
